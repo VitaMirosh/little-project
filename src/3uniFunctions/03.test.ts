@@ -1,11 +1,11 @@
 import {StudentType} from "../2Unitests/02";
-import {addSkill, makeStudentActive} from "./03";
+import {addSkill, doesStudentLiveIN, makeStudentActive} from "./03";
 import {findAllByTitle} from "@testing-library/react";
 
 let student: StudentType;
 beforeEach(() => {
     student = {
-        id:1,
+        id: 1,
         name: "Vitaliia",
         age: 30,
         isActive: false,
@@ -32,11 +32,19 @@ beforeEach(() => {
         ],
     }
 })
-test("student should be active",()=>{
-  expect(student.isActive).toBe(false);
+test("student should be active", () => {
+    expect(student.isActive).toBe(false);
 
-  makeStudentActive(student);
+    makeStudentActive(student);
 
-   expect(student.isActive).toBe(true);
+    expect(student.isActive).toBe(true);
 
+})
+test("does student live in city?", () => {
+
+    let result1 = doesStudentLiveIN(student, "Kiyv");
+    let result2 = doesStudentLiveIN(student, "Minsk");
+
+    expect(result1).toBe(false);
+    expect(result2).toBe(false);
 })
